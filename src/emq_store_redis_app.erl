@@ -22,8 +22,9 @@
 -export([start/2, stop/1]).
 
 start(_StartType, _StartArgs) ->
-    {ok, Sup} = emq_store_redis_sup:start_link(),
-    emq_store_redis:load(application:get_all_env()),
+    Env = application:get_all_env(emq_store_redis),
+    {ok, Sup} = emq_store_redis_sup:start_link(Env),
+    emq_store_redis:load(Env),
     {ok, Sup}.
 
 stop(_State) ->

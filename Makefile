@@ -2,9 +2,10 @@ PROJECT = emq_store_redis
 PROJECT_DESCRIPTION = EMQ Redis Store
 PROJECT_VERSION = 2.3.11
 
-BUILD_DEPS = emqttd cuttlefish
+BUILD_DEPS = emqttd cuttlefish eredis
 dep_emqttd = git https://github.com/emqtt/emqttd master
 dep_cuttlefish = git https://github.com/emqtt/cuttlefish v2.0.11
+dep_eredis = git https://github.com/wooga/eredis v1.2.0
 
 ERLC_OPTS += +debug_info
 ERLC_OPTS += +'{parse_transform, lager_transform}'

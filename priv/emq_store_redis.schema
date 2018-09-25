@@ -1,0 +1,33 @@
+%%-*- mode: erlang -*-
+%% Retainer config mapping
+
+{mapping, "store.redis.host", "emq_store_redis.host", [
+  {default, "localhost"},
+  {datatype, string}
+]}.
+
+{mapping, "store.redis.port", "emq_store_redis.port", [
+  {default, 6379},
+  {datatype, integer}
+]}.
+
+{mapping, "store.redis.database", "emq_store_redis.database", [
+  {default, 0},
+  {datatype, integer}
+]}.
+
+{mapping, "store.redis.password", "emq_store_redis.password", [
+  {default, ""},
+  {datatype, string}
+]}.
+
+{mapping, "store.redis.retry", "emq_store_redis.retry", [
+  {default, 1000},
+  {datatype, [integer, {duration, ms}]}
+]}.
+
+{mapping, "store.send_interval", "emq_store_redis.send_interval", [
+  {default, 1000},
+  {datatype, [integer, {duration, ms}]}
+]}.
+
