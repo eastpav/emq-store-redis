@@ -26,7 +26,7 @@
   {datatype, [integer, {duration, ms}]}
 ]}.
 
-{mapping, "store.send_interval", "emq_store_redis.send_interval", [
+{mapping, "store.read_interval", "emq_store_redis.read_interval", [
   {default, 1000},
   {datatype, [integer, {duration, ms}]}
 ]}.
