@@ -56,12 +56,17 @@ on_session_subscribed(_ClientId, _Username, {Topic, _Opts}, _Env) ->
 %% transform message and return
 on_message_publish(Message = #mqtt_message{topic = <<"$SYS/", _/binary>>}, _Env) ->
     {ok, Message};
-
+on_message_publish(Message = #mqtt_message{qos = 0}, _Env) ->
+    {ok, Message};
 on_message_publish(Message, _Env) ->
     lager:debug("on publish ~s~n", [emqttd_message:format(Message)]),
     store_message(Message),
     {ok, Message}.
 
+on_message_acked(_ClientId, _Username, Message = #mqtt_message{topic = <<"$SYS/", _/binary>>}, _Env) ->
+    {ok, Message};
+on_message_acked(_ClientId, _Username, Message = #mqtt_message{qos = 0}, _Env) ->
+    {ok, Message};
 on_message_acked(ClientId, Username, Message, _Env) ->
     lager:debug("client(~s/~s) acked: ~s~n", [Username, ClientId, emqttd_message:format(Message)]),
     delete_message(Message),
